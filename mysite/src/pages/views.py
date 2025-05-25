@@ -10,7 +10,7 @@ from .models import Account
 @login_required
 def transferView(request):
 	
-	if request.method == 'GET':		# Replace all GET instances in this block with POST
+	if request.method == 'GET':		# To fix replace all GET instances in this block and in index.html line 26 with POST and uncomment the csrf token on line 27 in the index.html
 		to = User.objects.get(username=request.GET.get('to'))
 		amount = int(request.GET.get('amount'))
 
@@ -22,7 +22,12 @@ def transferView(request):
 	
 	return redirect('/')
 
-
+@login_required
+def viewAccount(request, username):
+	#if request.user.username != username:
+	#	return HttpResponse("Unauthorized")
+	user = User.objects.get(username=username)
+	return HttpResponse(f"Balance of {username}: {user.account.balance}")
 
 @login_required
 def homePageView(request):

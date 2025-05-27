@@ -36,7 +36,23 @@
 
             <input type="submit" value="Transfer"/>
         </form>
-    </body>
+
+
+        <h2>Search for user</h2>
+            <form action="/search/" method="get">
+                <input type="text" name="username" placeholder="Enter username">
+                <input type="submit" value="Search">
+            </form>
+
+
+        <h2>Add a bank card</h2>    
+        <form id='addCard' action='addCard/' method="POST">
+            {% csrf_token %}
+            <input type="number" name="number"/><br/>
+            <input type="submit" value="Add"/>
+        </form>
+
+    </body> 
 
 
     </body>

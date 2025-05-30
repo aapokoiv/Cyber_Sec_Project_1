@@ -42,6 +42,7 @@ def addCard(request):
 @login_required
 def userSearchView(request):
 	username = request.GET.get('username')
+	actual_user = request.user.username
 	conn = sqlite3.connect('src/db.sqlite3')
 	cursor = conn.cursor()
 	query = f"""
@@ -54,8 +55,11 @@ def userSearchView(request):
 	rows = cursor.fetchall()
 	conn.close()
 
+	if actual_user not in dict(rows):
+		return HttpResponse(f"Name: {rows[0][0]}")
+
 	results = [{'username': row[0], 'balance': row[1]} for row in rows]
-	return JsonResponse({'results': results})
+	return HttpResponse(results)
 
 @login_required
 def homePageView(request):

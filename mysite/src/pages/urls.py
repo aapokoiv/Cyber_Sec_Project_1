@@ -5,7 +5,7 @@ from .views import homePageView, transferView, viewAccount, userSearchView, addC
 urlpatterns = [
     path('', homePageView, name='home'),
     path('transfer/', transferView, name='transfer'),
-    path('balance/<str:username>/', viewAccount, name='balance'),
+    path('profile/<str:username>/', viewAccount, name='profile'),
     path('search/', userSearchView, name='search'),
     path('addCard/', addCard, name='add_card')
 

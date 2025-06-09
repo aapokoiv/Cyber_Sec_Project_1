@@ -20,12 +20,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 
+# Comment out or delete this line:
 SECRET_KEY = '_#h3^7@u)4ry6p@q_%uh%0tdah_47*k0it0pobh%p-c_2b=u0n'
+
+# Uncomment this line:
 # SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '_#h3^7@u)4ry6p@q_%uh%0tdah_47*k0it0pobh%p-c_2b=u0n')
 
+
+# Comment out or delete these lines:
 DEBUG = True
 ALLOWED_HOSTS = []
 
+# Uncomment these lines:
 # DEBUG = False
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 

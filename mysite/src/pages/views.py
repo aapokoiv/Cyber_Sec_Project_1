@@ -13,11 +13,17 @@ xor_key = settings.SECRET_KEY.encode()[:32]
 @login_required
 def transferView(request):
 
-	# To fix replace all GET instances in this block and in index.html line 26 with POST 
-	# Also uncomment the csrf token on line 27 in the index.html
+	# Comment out or delete these lines:
 	if request.method == 'GET':		
 		to = User.objects.get(username=request.GET.get('to'))
 		amount = int(request.GET.get('amount'))
+	
+	# Uncomment these lines:
+	# if request.method == 'POST':		
+		# to = User.objects.get(username=request.POST.get('to'))
+		# amount = int(request.POST.get('amount'))
+	
+	# Also remember to uncomment the csrf token on line 27 in the index.html
 
 		request.user.account.balance -= amount
 		to.account.balance += amount
@@ -29,9 +35,9 @@ def transferView(request):
 
 @login_required
 def viewAccount(request, username):
-	# Uncomment these lines
+	# Uncomment these lines:
 	# if request.user.username != username:
-	# 	return HttpResponse("Unauthorized")
+		# return HttpResponse("Unauthorized")
 
 	user = User.objects.get(username=username)
 	card = user.account.card
@@ -46,10 +52,10 @@ def addCard(request):
 	if request.method == 'POST':
 		number = request.POST.get('number')
 
-		# Comment out this line
+		# Comment out or delete this line:
 		request.user.account.card = number
 
-		# And uncomment this part
+		# Uncomment these lines:
 		# encrypted_number = encrypt(number, xor_key)
 		# request.user.account.card = encrypted_number
 
@@ -73,7 +79,7 @@ def userSearchView(request):
 	conn = sqlite3.connect('src/db.sqlite3')
 	cursor = conn.cursor()
 
-	# Comment out this part
+	# Comment out or delete these lines:
 	query = f"""
         SELECT auth_user.username, pages_account.balance
         FROM auth_user
@@ -82,7 +88,8 @@ def userSearchView(request):
 		"""
 	cursor.execute(query)
 	
-	# And uncomment this part
+
+	# Uncomment these lines:
 	# query = f"""
         # SELECT auth_user.username, pages_account.balance
         # FROM auth_user

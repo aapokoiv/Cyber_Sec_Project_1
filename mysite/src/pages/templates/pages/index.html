@@ -23,7 +23,7 @@
 		
         <h2>Transfer money</h2>
 
-        <form id='transfer' action='transfer/' method="GET">  <!--Replace this GET with POST-->           <span>To:</span><br/>
+        <form id='transfer' action='transfer/' method="GET">  <!--Replace this GET with POST and uncomment the csrf token below-->           <span>To:</span><br/>
             <!--{% csrf_token %}-->
             <select name="to">
 			{% for account in accounts %}
